@@ -1,0 +1,103 @@
+@charset "utf-8";
+/* by ken 2015-2-6 */
+/* ==========================================================================
+   样式的统一
+   ========================================================================== */
+body, dl, dd, /* dt, 默认没边距 */
+ul, ol, /*li, 默认没边距 */
+h1, h2, h3, h4, h5, h6, pre, /* code, 默认没边距 */
+form, fieldset, legend, input, textarea, optgroup,
+p, blockquote, figure, hr, menu, dir,
+thead, tbody, tfoot, th, td /* th, td 默认 padding:1px */
+{
+    margin:0;
+    padding:0;
+}
+ul, ol {
+    list-style-type: none;
+    list-style-image: none;
+}
+
+/* ==========================================================================
+   清除浮动
+   ========================================================================== */
+.clearfix:after{clear:both;content:".";display:block;height:0;visibility:hidden;}
+.clearfix{*zoom:1;}
+/* ==========================================================================
+   链接
+   ========================================================================== */
+a {text-decoration: none;}
+a:active,a:hover {outline: 0 none;}
+a:focus {outline: 1px dotted;}
+
+/* ==========================================================================
+   字体和基础排版
+   ========================================================================== */
+body,
+button,
+input,
+select,
+textarea
+{
+    font-family: 'helvetica neue',tahoma,'hiragino sans gb',stheiti,'wenquanyi micro hei',\5FAE\8F6F\96C5\9ED1,\5B8B\4F53,sans-serif;
+    -ms-text-autospace: ideograph-alpha ideograph-numeric ideograph-parenthesis; /* 5 */
+    text-autospace: ideograph-alpha ideograph-numeric ideograph-parenthesis; /* 5 */
+}
+b,strong {font-weight: bold;}
+
+/* ==========================================================================
+   表格
+   ========================================================================== */
+table { width: 100%; border-collapse:collapse;border-spacing:0;}
+img {
+    border: 0 none;
+    width: auto\9;
+    height: auto;
+    max-width: 100%;
+    vertical-align: top;
+    -ms-interpolation-mode: bicubic;
+}
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+    vertical-align: baseline;
+    *vertical-align: middle;
+}
+
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+    -webkit-appearance: button;
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   HTML5 元素
+   ========================================================================== */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+    display: block;
+}
+
+audio,
+canvas,
+video,
+progress {
+    display: inline-block;
+    vertical-align: baseline;
+}
