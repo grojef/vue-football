@@ -65,25 +65,23 @@
             }
         },
         methods: {
-            contiuneBet: function () {
+            contiuneBet() {
                 this.$router.back();
             },
-            removeRace: function (id) {
+            removeRace(id) {
                 this.$store.dispatch('removeRace', {id});
                 this.initData();
             },
-            removeTar:function (id,params) {
+            removeTar(id,params) {
                 this.$store.dispatch('togglePitch', {id,params});
                 this.initData();
             },
-
             betConfrim(){
                   this.$message({message:'投注成功，自动返回选择比赛',duration:3000,onClose:()=>{
                       this.contiuneBet();
                   }});
             },
-
-            initData: function () {
+            initData() {
                 var arr = [];
                 this.$store.state.pitchRace.forEach((v, k) => {
 

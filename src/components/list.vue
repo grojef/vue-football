@@ -136,7 +136,7 @@
                 if (this.pitchRace.size > 1) {
                     this.$router.push('bet');
                 } else {
-                   this.$message({message:'请至少选择2场比赛',duration:1000});
+                    this.$message({message: '请至少选择2场比赛', duration: 1000});
                 }
             },
             caculateSp: function (orgin, index) {
@@ -146,12 +146,15 @@
                 this.$store.dispatch(types.TOGGLE_PITCH, {id, params});
                 this.caculateItemStatus();
                 this.buttonMsg();
-
             },
             reset(){
-                this.$store.dispatch(types.RESET);
-                this.caculateItemStatus();
-                this.buttonMsg();
+                this.$message({
+                    message: '重置成功',duration:500, onClose: () => {
+                        this.$store.dispatch(types.RESET);
+                        this.caculateItemStatus();
+                        this.buttonMsg();
+                    }
+                });
             },
             caculateItemStatus: function () {
                 let map = this.pitchRace;
