@@ -15,13 +15,17 @@ let Message = function (options) {
             message: options
         }
     }
-
     instance = new  MessageConstructor({
         data: options
     });
 
     instance.vm = instance.$mount();
-
+    instance.vm.visible=true;
     document.body.appendChild(instance.vm.$el);
+    return instance.vm;
+}
+
+Message.close=function () {
+    this.close();
 }
 export default Message;

@@ -24,7 +24,7 @@
     export default{
         data(){
             return {
-                visible: true,
+                visible: false,
                 message: '',
                 duration: 0,
                 closed: false,

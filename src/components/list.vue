@@ -149,7 +149,7 @@
             },
             reset(){
                 this.$message({
-                    message: '重置成功',duration:500, onClose: () => {
+                    message: '重置成功',duration:300, onClose: () => {
                         this.$store.dispatch(types.RESET);
                         this.caculateItemStatus();
                         this.buttonMsg();
