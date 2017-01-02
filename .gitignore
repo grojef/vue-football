@@ -2,3 +2,10 @@
 node_modules/
 dist/
 npm-debug.log
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/vue-football.iml
+.idea/watcherTasks.xml
+.idea/workspace.xml
+src/assets/favicon.ico

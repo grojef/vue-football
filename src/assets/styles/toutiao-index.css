@@ -93,8 +93,8 @@ body, a, img, label, button, input, textarea, select {
     color: #333;
 }
 .k-tabs {
-    position: absolute; 
-    top: 4.4rem; 
+    position: absolute;
+    top: 4.4rem;
     bottom: 5rem;
     left: 0; 
     width: 100%;
@@ -1041,4 +1041,12 @@ button.numKB-on {color:#FFF;background-color:#333!important;}
     padding: 1rem 2rem;
     -webkit-transform: translate(-50%, -50%);
    transform: translate(-50%, -50%);
+}
+
+.roll{
+    transform:rotate(180deg);
+    -ms-transform:rotate(180deg); /* Internet Explorer */
+    -moz-transform:rotate(180deg); /* Firefox */
+    -webkit-transform:rotate(180deg); /* Safari 和 Chrome */
+    -o-transform:rotate(180deg); /* Opera */
 }
