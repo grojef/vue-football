@@ -2,7 +2,7 @@
     <div>
         <div class="r-message" v-show="visible">
            <span>
-              <div class="r-message-notice">{{message}}</div>
+              <p class="r-message-notice">{{message}}</p>
             </span>
         </div>
     </div>
@@ -22,7 +22,7 @@
         background: rgba(40, 40, 40, .75);
         border-radius: 5px;
         color: #fff;
-        padding: 7px 10px 7px 10px;
+        padding: 7px 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, .2);
         border: 0 solid transparent;
         display: block;
