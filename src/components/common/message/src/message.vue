@@ -1,23 +1,38 @@
 <template>
-    <div class="message" v-show="visible">
-        <p>{{message}}</p>
+    <div>
+        <div class="r-message" v-show="visible">
+           <span>
+              <div class="r-message-notice">{{message}}</div>
+            </span>
+        </div>
     </div>
 </template>
 <style>
-    .message {
-        background: #333;
-        color: #fff;
-        font-size: 1.3rem;
-        border-radius: .3rem;
-        text-align: center;
+    .r-message {
         position: fixed;
         top: 50%;
         left: 50%;
-        z-index: 999;
-        padding: 1.2rem 1.4rem;
-        -webkit-transform: translate(-50%, -50%);
         transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        z-index: 1000;
     }
+
+    .r-message .r-message-notice {
+        font-size: 14px;
+        background: rgba(40, 40, 40, .75);
+        border-radius: 5px;
+        color: #fff;
+        padding: 7px 10px 7px 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, .2);
+        border: 0 solid transparent;
+        display: block;
+        width: auto;
+        line-height: 1.5;
+        vertical-align: middle;
+        position: relative;
+        margin: 10px 0;
+    }
+
 
 </style>
 <script>
@@ -29,7 +44,7 @@
                 duration: 0,
                 closed: false,
                 timer: null,
-                onClose:null
+                onClose: null
             }
         },
         watch: {
@@ -52,7 +67,7 @@
 
             close(){
                 this.closed = true;
-                if(typeof this.onClose ==='function'){
+                if (typeof this.onClose === 'function') {
                     this.onClose(this);
                 }
             },
