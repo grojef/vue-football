@@ -14,3 +14,11 @@ npm start
 # build for production with minification
 npm run build
 ```
+# react
+
+Open [https://www.github.com/xiaoke88/react-football] to view it in browser
+
+
+# angular 1.x
+
+Open [https://github.com/xiaoke88/angular-football] to view it in browser
