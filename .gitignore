@@ -1,6 +1,5 @@
 .DS_Store
 node_modules/
-dist/
 npm-debug.log
 .idea/misc.xml
 .idea/modules.xml
@@ -9,3 +8,4 @@ npm-debug.log
 .idea/watcherTasks.xml
 .idea/workspace.xml
 src/assets/favicon.ico
+/build/

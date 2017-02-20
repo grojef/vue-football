@@ -885,65 +885,6 @@ body, a, img, label, button, input, textarea, select {
 }
 .user-area a, .user-area a:hover{ color: #fff;}
 
-/* ken 2015-03-11 引导 */
-.guide_area{
-    display: none;
-    position: fixed;
-    z-index: 1050;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    overflow: hidden;
-    outline: 0;
-    -webkit-overflow-scrolling: touch;
-}
-.guide_area:before {
-    content: '';
-    position: absolute;
-    z-index: 1040;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0,0,0,.5);
-}
-.guide_box{ 
-    z-index: 1045;
-    position: absolute; top: 50%; left: 50%;
-    -webkit-transform: translate(-50%,-50%);
-    -ms-transform: translate(-50%,-50%);
-        transform: translate(-50%,-50%);
-}
-.guide_list{ 
-    width: 96rem; overflow: hidden;
-    -webkit-transition:-webkit-transform .5s;
-    transition:transform .5s;
-    -webkit-transform: translateX(32rem);
-    -ms-transform: translateX(32rem);
-        transform: translateX(32rem);
-}
-.guide_list li { width: 21rem; float: left; margin: 0 5.5rem;}
-.guide_prev{
-    position: absolute;
-    top: 50%;
-    left: 1rem;
-    width: 1.95rem;
-    height: 2.7rem;
-    background: url(../images/guide/guide_prev.png) no-repeat;
-    background-size: cover;
-    z-index: 1045;
-}
-.guide_next{
-    position: absolute;
-    top: 50%;
-    right: 1rem;
-    width: 1.95rem;
-    height: 2.7rem;
-    background: url(../images/guide/guide_next.png) no-repeat;
-    background-size: cover;
-    z-index: 1045;
-}
 
 /* ken 2015-03-12 走势图工具 */
 .trend-content{
