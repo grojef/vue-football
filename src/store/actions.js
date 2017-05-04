@@ -8,6 +8,8 @@
 
 import * as types from './mutations-types'
 
+import axios from 'axios'
+
 
 export const removeRace=({commit},id)=>{
     commit([types.REMOVERACE],id);
@@ -24,4 +26,10 @@ export const togglePitch=({commit},{id,params})=>{
 export const raceReset=({commit})=>{
     commit([types.RESET]);
 
+}
+
+export const loadMatches = async ({commit},...args)=>{
+     console.log(args);
+     let {data} =await axios.get(`http://tv.52jun.cn:8000/assets/zc.json`);
+    commit([types.LOAD_METCHES],data);
 }
