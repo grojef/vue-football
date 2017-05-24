@@ -10,4 +10,5 @@ npm-debug.log
 /build/
 .nuxt
 pages
+.idea
 postcss.config.js
