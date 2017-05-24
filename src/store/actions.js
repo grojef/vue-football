@@ -8,11 +8,14 @@
 
 import * as types from './mutations-types'
 
-import axios from 'axios'
+import 'whatwg-fetch'
+
+
+import zc from '../assets/json/zc.json'
 
 
 export const removeRace=({commit},id)=>{
-    commit([types.REMOVERACE],id);
+    commit([types.REMOVE_RACE],id);
 }
 
 export const removeKey=({commit},id)=>{
@@ -28,8 +31,6 @@ export const raceReset=({commit})=>{
 
 }
 
-export const loadMatches = async ({commit},...args)=>{
-     console.log(args);
-     let {data} =await axios.get(`http://tv.52jun.cn:8000/assets/zc.json`);
-    commit([types.LOAD_METCHES],data);
+export const loadMatches = async ({commit})=>{
+    commit([types.LOAD_METCHES],zc.raceList);
 }

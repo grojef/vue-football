@@ -4,12 +4,8 @@
 import Vue from 'vue'
 
 const filter = Vue.filter('formatCode', function (val) {
-
     let _arr = val.split('-');
     let tar_des = [];
-
-    tar_des.push('主');
-
     if(_arr[0] =='4071'){
         tar_des.push('让');
     }

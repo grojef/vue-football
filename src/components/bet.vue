@@ -2,27 +2,28 @@
     <div class="slideLeft">
         <div class="bg_f5">
             <div class="tac addGames fs24" @click="contiuneBet();">
-                <i class="iconfont fs24">&#xe60e;</i> 继续添加比赛（已选择<span class="red" ng-cloak>{{betCount}}</span>场赛事）
+                <i class="iconfont fs24">&#xe60e;</i> 继续添加比赛（已选择<span class="red">{{selectArray.length}}</span>场赛事）
             </div>
             <div class="k-tabs" style="top:4.6rem; bottom:9.6rem;">
 
 
-                        <ul class="gamesList">
-                        <li class="repeat" v-for="item in selectArray">
-                            <div class="justify">
-                                <div><span class="gray fs24 mr10">{{item.race.matchNo}}</span>{{item.race.homeTeam}}（主）VS
-                                    {{item.race.guestTeam}}
-                                </div>
-                                <a class="red-better fs24" href="javascript:;" @click="removeRace(item.race.id);">删除</a>
+                <ul class="gamesList">
+                    <li class="repeat" v-for="item in selectArray" :key="item.id">
+                        <div class="justify">
+                            <div><span class="gray fs24 mr10">{{item.matchNo}}</span>{{item.homeTeam}}（主）VS
+                                {{item.guestTeam}}
                             </div>
-                            <div class="gamesListBox clearfix">
-                                <transition-group name="list" tag="p">
-                                   <button v-for="(key,value) in item.tar" :key="key" @click="removeTar(item.race.id,key)" class="glb_btn" data-no="170102014-4076-3">{{key | formatCode}}</button>
-                                </transition-group>
-                            </div>
-                        </li>
-                      </ul>
-
+                            <a class="red-better fs24" href="javascript:;" @click="removeRace(item.id);">删除</a>
+                        </div>
+                        <div class="gamesListBox clearfix">
+                            <transition-group name="list" tag="p">
+                                <button v-for="(value,key) in item.comments" :key="key" v-if="value"
+                                        @click="removeTar(item.id,key)" class="glb_btn">{{key | formatCode}}
+                                </button>
+                            </transition-group>
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
         <div class="pick-area">
@@ -43,19 +44,19 @@
 </template>
 
 <style>
-
     .list-enter-active, .list-leave-active {
         transition: all 1s;
     }
+
     .list-enter, .list-leave-active {
         opacity: 0;
     }
 </style>
 
 
-
 <script>
     import {mapState, mapActions, mapGetters} from 'vuex'
+    import * as types from '../store/mutations-types'
     export default{
 
         data(){
@@ -69,46 +70,24 @@
                 this.$router.back();
             },
             removeRace(id) {
-                this.$store.dispatch('removeRace', {id});
-                this.initData();
+                this.$store.dispatch(types.REMOVE_RACE, {id});
             },
-            removeTar(id,params) {
-                this.$store.dispatch('togglePitch', {id,params});
-                this.initData();
+            removeTar(id, params) {
+                this.$store.dispatch(types.TOGGLE_PITCH, {id, params});
             },
             betConfrim(){
-                  this.$message({message:'投注成功，自动返回选择比赛',duration:3000,onClose:()=>{
-                      this.contiuneBet();
-                  }});
-            },
-            initData() {
-                var arr = [];
-                this.$store.state.pitchRace.forEach((v, k) => {
-
-                    let tar = [];
-
-                    v.forEach(vt=>{
-                        tar.push(vt);
-                    })
-
-                    this.$store.state.raceList.forEach(f => {
-                        if (k == f.id) {
-                            arr.push({'race': f, 'tar': tar});
-                        }
-                    })
+                this.$message({
+                    message: '投注成功，自动返回', duration: 3000, onClose: () => {
+                        this.contiuneBet();
+                    }
                 });
-
-                this.selectArray = arr;
-                this.betCount = this.selectArray.length;
-
-                if (this.betCount < 2) {
-                    this.contiuneBet();
-                }
-
             }
         },
         mounted(){
-            this.initData();
+            //this.initData();
+        },
+        computed: {
+            ...mapGetters({selectArray: 'validMatches'})
         }
     }
 </script>

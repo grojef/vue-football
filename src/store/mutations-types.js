@@ -8,11 +8,13 @@ export const PITCH_RACE='pitchRace';
 
 export const REMOVE_KEY='removeKey'
 
-export const REMOVERACE='removeRace';
+export const REMOVE_RACE='removeRace';
 
 export const TOGGLE_PITCH='togglePitch';
 
 export const RESET='raceReset'
+
+export const LOAD_METCHES ='loadMatches'
 
 
 

@@ -1,15 +1,15 @@
 <template>
     <div>
         <div id="jq_indent">
-            <div class="k-tabs bg_f5" style="top:0; bottom:7.7rem;">
+            <div class="k-tabs bg_f5" id="tab_scroll" style="top:0; bottom:7.7rem;">
                 <div class="all_match_tabs">
                     <div class="all_match">
-                        <div class="match_hd bg_ff justify">
-                            <p><i class="iconfont gray fs30">&#xe607;</i> 2015-02-09 星期一 {{count}} 场比赛</p>
+                        <div id="match_hd" class="match_hd bg_ff justify">
+                            <p><i class="iconfont gray fs30">&#xe607;</i> 2015-02-09 星期一 {{raceList.length}} 场比赛</p>
                             <i class="iconfont gray_er">&#xe604;</i>
                         </div>
                         <ul class="match_list">
-                            <li v-for="item in raceList">
+                            <li v-for="item in raceList" :key="item.id">
                                 <div class="match_bd">
                                     <div class="game_box">
                                         <div class="game_tit tac">
@@ -38,21 +38,21 @@
                                                     <td align="center">0</td>
                                                     <td align="center">
                                                         <div class="sucs_fail"
-                                                             :class="{select:itemStatus[`${item.id}-4076-3`]}"
+                                                             :class="{select:item['comments']['4076-3']}"
                                                              @click="toggleItem(item.id,'4076-3');"><span
                                                                 class="name">胜</span>{{caculateSp(item['spf-sp'],0)}}
                                                         </div>
                                                     </td>
                                                     <td align="center">
                                                         <div class="sucs_fail"
-                                                             :class="{select: itemStatus[`${item.id}-4076-1`]}"
+                                                             :class="{select: item['comments']['4076-1']}"
                                                              @click="toggleItem(item.id,'4076-1');"><span
                                                                 class="name">平</span>{{caculateSp(item['spf-sp'],1)}}
                                                         </div>
                                                     </td>
                                                     <td align="center">
                                                         <div class="sucs_fail"
-                                                             :class="{select: itemStatus[`${item.id}-4076-0`]}"
+                                                             :class="{select: item['comments'][`4076-0`]}"
                                                              @click="toggleItem(item.id,'4076-0');"><span
                                                                 class="name">负</span>{{caculateSp(item['spf-sp'],2)}}
                                                         </div>
@@ -62,21 +62,21 @@
                                                     <td align="center"><span class="red">{{item.concede}}</span></td>
                                                     <td align="center">
                                                         <div class="sucs_fail"
-                                                             :class="{select: itemStatus[`${item.id}-4071-3`]}"
+                                                             :class="{select: item['comments'][`4071-3`]}"
                                                              @click="toggleItem(item.id,'4071-3');"><span
                                                                 class="name">胜</span>{{caculateSp(item['xspf-sp'],0)}}
                                                         </div>
                                                     </td>
                                                     <td align="center">
                                                         <div class="sucs_fail"
-                                                             :class="{select: itemStatus[`${item.id}-4071-1`]}"
+                                                             :class="{select: item['comments'][`4071-1`]}"
                                                              @click="toggleItem(item.id,'4071-1');"><span
                                                                 class="name">平</span>{{caculateSp(item['xspf-sp'],1)}}
                                                         </div>
                                                     </td>
                                                     <td align="center">
                                                         <div class="sucs_fail"
-                                                             :class="{select: itemStatus[`${item.id}-4071-0`]}"
+                                                             :class="{select: item['comments'][`4071-0`]}"
                                                              @click="toggleItem(item.id,'4071-0');"><span
                                                                 class="name">胜</span>{{caculateSp(item['xspf-sp'],2)}}
                                                         </div>
@@ -109,13 +109,19 @@
                 <div class="tc-btn-group">
                     <a href="javascript:void(0);" @click="reset()" class="tc-btn tc-btn-info fs24">重置</a>
                     <a href="javascript:void(0);" class="tc-btn tc-btn-large tc-btn-primary"
-                       @click="check()">{{buttonMsg()}}</a>
+                       @click="check()">{{buttonMsg}}</a>
                 </div>
             </div>
         </div>
 
     </div>
 </template>
+<style>
+    .sticky {
+        position: fixed;
+        width: 96%;
+    }
+</style>
 <script>
     import {mapState, mapActions, mapGetters} from 'vuex'
 
@@ -125,46 +131,29 @@
     export default{
         data(){
             return {
-                itemStatus: {},
-                index: -1,
-                count: 0,
-                raceList: []
+                index: -1
             }
         },
         methods: {
-            check: function () {
-                if (this.pitchRace.size > 1) {
+            check() {
+                if (this.$store.getters.validMatchCounts > 1) {
                     this.$router.push('bet');
                 } else {
                     this.$message({message: '请至少选择2场比赛', duration: 1000});
                 }
             },
-            caculateSp: function (orgin, index) {
+            caculateSp(orgin, index) {
                 return orgin.split('-')[index];
             },
-            toggleItem: function (id, params) {
+            toggleItem(id, params) {
                 this.$store.dispatch(types.TOGGLE_PITCH, {id, params});
-                this.caculateItemStatus();
-                this.buttonMsg();
             },
             reset(){
                 this.$message({
-                    message: '重置成功',duration:300, onClose: () => {
+                    message: '重置成功', duration: 300, onClose: () => {
                         this.$store.dispatch(types.RESET);
-                        this.caculateItemStatus();
-                        this.buttonMsg();
                     }
                 });
-            },
-            caculateItemStatus: function () {
-                let map = this.pitchRace;
-                let item = {};
-                map.forEach((values, key) => {
-                    values.forEach(t => {
-                        item[`${key}-${t}`] = true;
-                    })
-                });
-                this.itemStatus = item;
             },
             toogleItemShow: function (key) {
                 if (this.index == key) {
@@ -173,26 +162,24 @@
                     this.index = key;
                 }
             },
-            buttonMsg: function () {
-                if (this.$store.getters.pitchRace.size > 1) {
-                    return "确认"
-                } else {
-                    return '请选择'
-                }
-            },
-            initList: function () {
-                this.raceList = this.$store.getters.getRaceList;
-                this.count = this.raceList.length;
+            ...mapActions({
+                initList: types.LOAD_METCHES
+            })
+        },
+        mounted: function () {
+            if (this.$store.state.raceList.length < 1) {
+                this.initList();
             }
         },
 
-        mounted: function () {
-            this.initList();
-            this.caculateItemStatus();
-        },
-
         computed: {
-            ...mapGetters({pitchRace: 'pitchRace'})
+            ...mapState({raceList: state => state.raceList}),
+            buttonMsg: function () {
+                return this.validMatchesCounts >= 2 ? '下一步' : `请选择`
+            },
+            validMatchesCounts: function () {
+                return this.$store.getters.validMatchCounts
+            }
         }
     }
 

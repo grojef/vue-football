@@ -7,5 +7,7 @@ npm-debug.log
 .idea/vue-football.iml
 .idea/watcherTasks.xml
 .idea/workspace.xml
-src/assets/favicon.ico
 /build/
+.nuxt
+pages
+postcss.config.js

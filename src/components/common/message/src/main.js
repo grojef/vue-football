@@ -5,7 +5,7 @@ import Vue from 'vue';
 import msg from './message.vue'
 let MessageConstructor = Vue.extend(msg)
 
-let instance;
+
 
 let Message = function (options) {
     options = options || {};
@@ -15,7 +15,7 @@ let Message = function (options) {
             message: options
         }
     }
-    instance = new  MessageConstructor({
+    let instance = new  MessageConstructor({
         data: options
     });
 

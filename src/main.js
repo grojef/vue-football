@@ -7,15 +7,11 @@ import "./common";
 import "./assets/styles/media10px.css";
 import "./assets/styles/rem-base.css";
 import "./assets/styles/iconfont/iconfont.css";
-import "./assets/styles/toutiao-index.css";
-import "./assets/styles/kmodal.css";
-import "./assets/styles/style.css";
+import "./assets/styles/index.css";
 
+import VueRouter from "vue-router";
 
-var VueRouter = require('vue-router')
 Vue.use(VueRouter);
-/*var VueResource = require('vue-resource');
- Vue.use(VueResource);*/
 
 var router = routersCombine(VueRouter)
 const app = new Vue({

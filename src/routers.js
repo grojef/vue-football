@@ -1,6 +1,10 @@
+
+const Bet = resolve => {require(['./components/bet.vue'], resolve)};
+
 export default function (VueRouter) {
   return new VueRouter({
       base: __dirname,
+      mode:'history',
       routes: [{
         name:'list',
         path: '/list',
@@ -9,7 +13,7 @@ export default function (VueRouter) {
         {
           name:'bet',
           path: '/bet',
-          component: require('./components/bet.vue')
+          component: Bet
         },
         {
           path: '*',
